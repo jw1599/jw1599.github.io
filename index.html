@@ -1162,13 +1162,38 @@
                       <!-- Reply Messages End -->
 
                          <!-- Contact Form Start -->
-<form class="form contact-form" id="contact-form" action="https://web3forms.com/api/v1/submit" method="POST">
-  <input type="hidden" name="access_key" value="1b86ca2d-2b9d-41cd-b613-40b0e9752e36">
-  <input type="text" name="name" placeholder="Naam*" required>
-  <input type="email" name="email" placeholder="E-mail*" required>
-  <button type="submit">Verstuur</button>
-</form>
-
+    <form class="contact-form" action="https://web3forms.com/api/v1/submit" method="POST">
+      <!-- Hidden Required Fields -->
+      <input type="hidden" name="access_key" value="1b86ca2d-2b9d-41cd-b613-40b0e9752e36">
+      <input type="hidden" name="from_name" value="Justin Wong">
+      <input type="hidden" name="form_subject" value="Contact Form Message">
+      <!-- END Hidden Required Fields-->
+      <div class="container-fluid p-0">
+        <div class="row gx-0">
+          <div class="col-12 col-md-6 form__item animate-in-up">
+            <input type="text" name="Name" placeholder="Naam*" required>
+          </div>
+          <div class="col-12 col-md-6 form__item animate-in-up">
+            <input type="text" name="Company" placeholder="Bedrijfsnaam">
+          </div>
+          <div class="col-12 col-md-6 form__item animate-in-up">
+            <input type="email" name="Email" placeholder="E-mail*" required>
+          </div>
+          <div class="col-12 col-md-6 form__item animate-in-up">
+            <input type="tel" name="Phone" placeholder="Telefoon">
+          </div>
+          <div class="col-12 form__item animate-in-up">
+            <textarea name="Message" placeholder="Opmerkingen*" required></textarea>
+          </div>
+          <div class="col-12 form__item animate-in-up">
+            <button class="btn btn-default hover-default" type="submit">
+              <em></em>
+              <span class="btn-caption">Verstuur</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </form>
     <!-- Contact Form End -->
 
                     </div>
