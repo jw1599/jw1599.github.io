@@ -579,49 +579,38 @@ $(function() {
 // --------------------------------------------- //
 // Contact Form Start
 // --------------------------------------------- //
-document.getElementById("contact-form").addEventListener("submit", function(e) {
-  e.preventDefault(); // Voorkom de standaard formulier verzending
+document.getElementById("contact-form").addEventListener("submit", function (event) {
+  event.preventDefault(); // Voorkom dat de pagina opnieuw laadt
 
-  const formData = new FormData(this); // Verkrijg de formulierdata
-  var object = {};
-  formData.forEach((value, key) => {
-    object[key] = value; // Zet de data in een object
-  });
-  var json = JSON.stringify(object); // Zet het object om in JSON
+  const formData = new FormData(this); // Verkrijg de gegevens van het formulier
 
-  fetch("https://web3forms.com/api/v1/submit", {
+  fetch("https://formspree.io/f/xdkooael", {
     method: "POST",
+    body: formData,
     headers: {
-      "Content-Type": "application/json", // Stuur JSON
-      Accept: "application/json" // Accepteer JSON
+      Accept: "application/json",
     },
-    body: json // Voeg de JSON-data toe aan de body
   })
-    .then(async (response) => {
-      const jsonResponse = await response.json(); // Verkrijg de JSON-respons
+    .then((response) => {
       if (response.ok) {
-        // Controleer of de response goed was
-        // Verberg het formulier en toon de bevestigingsboodschap
-        this.classList.add('is-hidden');
-        document.querySelector('.form__reply').classList.add('is-visible');
-        
-        // Reset het formulier na 5 seconden
+        // Toon het succesbericht
+        document.querySelector(".form__reply").classList.add("is-visible");
+        this.reset(); // Reset het formulier
+
+        // Verberg het succesbericht na een paar seconden
         setTimeout(() => {
-          document.querySelector('.form__reply').classList.remove('is-visible');
-          this.classList.remove('is-hidden');
-          this.reset(); // Reset het formulier
+          document.querySelector(".form__reply").classList.remove("is-visible");
         }, 5000);
       } else {
-        // Log de fout en toon een bericht
-        console.error('Er is een fout opgetreden:', jsonResponse.message);
-        alert('Er is een fout opgetreden: ' + jsonResponse.message);
+        throw new Error("Er is een fout opgetreden."); // Gooi een fout als het antwoord geen 200 is
       }
     })
     .catch((error) => {
-      console.error('Er is een fout opgetreden:', error);
-      alert('Er is een fout opgetreden: ' + error.message);
+      console.error("Error:", error);
+      alert("Er is een fout opgetreden. Probeer het opnieuw.");
     });
 });
+
 // --------------------------------------------- //
 // Contact Form End
 // --------------------------------------------- //
