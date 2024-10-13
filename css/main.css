@@ -63,8 +63,8 @@
 /* ------------------------------------------------*/
 :root {
   --_size: 1.6rem;
-  --_font-default: "Urbanist", sans-serif;
-  --_font-accent: "Urbanist", sans-serif;
+  --_font-default: "Universal Sans Regular", sans-serif;
+  --_font-accent: "Universal Sans Regular", sans-serif;
   --_radius: 2rem;
   --_radius-s: 1rem;
   --_animspeed-fast: 0.1s;
