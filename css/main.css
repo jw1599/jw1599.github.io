@@ -52,7 +52,7 @@
 /* Light */
 @font-face {
     font-family: 'Universal Sans';
-    src: url('/fonts/US/UniversalSansLight.woff2') format('woff2');
+    src: url('/fonts/UniversalSans/UniversalSansLight.woff2') format('woff2');
     font-weight: 300; /* Light */
     font-style: normal;
 }
@@ -60,7 +60,7 @@
 /* Medium */
 @font-face {
     font-family: 'Universal Sans';
-    src: url('/fonts/US/UniversalSansMedium.woff2') format('woff2');
+    src: url('/fonts/UniversalSans/UniversalSansMedium.woff2') format('woff2');
     font-weight: 500; /* Medium */
     font-style: normal;
 }
@@ -68,7 +68,7 @@
 /* Bold */
 @font-face {
     font-family: 'Universal Sans';
-    src: url('/fonts/US/UniversalSansBold.woff2') format('woff2');
+    src: url('/fonts/UniversalSans/UniversalSansBold.woff2') format('woff2');
     font-weight: 700; /* Bold */
     font-style: normal;
 }
@@ -76,7 +76,7 @@
 /* Regular */
 @font-face {
     font-family: 'Universal Sans';
-    src: url('/fonts/US/UniversalSansRegular.woff2') format('woff2');
+    src: url('/fonts/UniversalSans/UniversalSansRegular.woff2') format('woff2');
     font-weight: 400; /* Regular */
     font-style: normal;
 }
