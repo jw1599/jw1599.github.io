@@ -598,9 +598,9 @@ document.getElementById("contact-form").addEventListener("submit", function(e) {
     body: json // Voeg de JSON-data toe aan de body
   })
     .then(async (response) => {
+      const jsonResponse = await response.json(); // Verkrijg de JSON-respons
       if (response.ok) {
         // Controleer of de response goed was
-        const json = await response.json();
         // Verberg het formulier en toon de bevestigingsboodschap
         this.classList.add('is-hidden');
         document.querySelector('.form__reply').classList.add('is-visible');
@@ -612,14 +612,16 @@ document.getElementById("contact-form").addEventListener("submit", function(e) {
           this.reset(); // Reset het formulier
         }, 5000);
       } else {
-        console.error('Er is een fout opgetreden:', response.statusText);
+        // Log de fout en toon een bericht
+        console.error('Er is een fout opgetreden:', jsonResponse.message);
+        alert('Er is een fout opgetreden: ' + jsonResponse.message);
       }
     })
     .catch((error) => {
       console.error('Er is een fout opgetreden:', error);
+      alert('Er is een fout opgetreden: ' + error.message);
     });
 });
-
 // --------------------------------------------- //
 // Contact Form End
 // --------------------------------------------- //
