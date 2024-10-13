@@ -579,28 +579,47 @@ $(function() {
 // --------------------------------------------- //
 // Contact Form Start
 // --------------------------------------------- //
-$(document).ready(function() {
-  $('#contact-form').on('submit', function(event) {
-    event.preventDefault(); // Voorkom de standaardformulierverzending
+document.getElementById("contact-form").addEventListener("submit", function(e) {
+  e.preventDefault(); // Voorkom de standaard formulier verzending
 
-    var formData = $(this).serialize(); // Verkrijg de formulierdata
-
-    $.ajax({
-      url: 'https://web3forms.com/api/v1/submit',
-      type: 'POST',
-      data: formData,
-      success: function(response) {
-        // Acties bij succesvolle verzending
-        alert('Bedankt voor je bericht!'); // Hier kun je ook een beter ontwerp gebruiken
-        $('#contact-form')[0].reset(); // Reset het formulier
-      },
-      error: function(error) {
-        // Acties bij een fout
-        alert('Er is een fout opgetreden: ' + error.responseText);
-      }
-    });
+  const formData = new FormData(this); // Verkrijg de formulierdata
+  var object = {};
+  formData.forEach((value, key) => {
+    object[key] = value; // Zet de data in een object
   });
+  var json = JSON.stringify(object); // Zet het object om in JSON
+
+  fetch("https://web3forms.com/api/v1/submit", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json", // Stuur JSON
+      Accept: "application/json" // Accepteer JSON
+    },
+    body: json // Voeg de JSON-data toe aan de body
+  })
+    .then(async (response) => {
+      if (response.ok) {
+        // Controleer of de response goed was
+        const json = await response.json();
+        // Verberg het formulier en toon de bevestigingsboodschap
+        this.classList.add('is-hidden');
+        document.querySelector('.form__reply').classList.add('is-visible');
+        
+        // Reset het formulier na 5 seconden
+        setTimeout(() => {
+          document.querySelector('.form__reply').classList.remove('is-visible');
+          this.classList.remove('is-hidden');
+          this.reset(); // Reset het formulier
+        }, 5000);
+      } else {
+        console.error('Er is een fout opgetreden:', response.statusText);
+      }
+    })
+    .catch((error) => {
+      console.error('Er is een fout opgetreden:', error);
+    });
 });
+
 // --------------------------------------------- //
 // Contact Form End
 // --------------------------------------------- //
