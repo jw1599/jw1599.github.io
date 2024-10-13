@@ -52,7 +52,7 @@
 /* Light */
 @font-face {
     font-family: 'Universal Sans';
-    src: url('/fonts/UniversalSans/UniversalSans-Light.woff2') format('woff2');
+    src: url('/fonts/US/UniversalSansLight.woff2') format('woff2');
     font-weight: 300; /* Light */
     font-style: normal;
 }
@@ -60,7 +60,7 @@
 /* Medium */
 @font-face {
     font-family: 'Universal Sans';
-    src: url('/fonts/UniversalSans/UniversalSans-Medium.woff2') format('woff2');
+    src: url('/fonts/US/UniversalSansMedium.woff2') format('woff2');
     font-weight: 500; /* Medium */
     font-style: normal;
 }
@@ -68,18 +68,17 @@
 /* Bold */
 @font-face {
     font-family: 'Universal Sans';
-    src: url('/fonts/UniversalSans/UniversalSans-Bold.woff2') format('woff2');
+    src: url('/fonts/US/UniversalSansBold.woff2') format('woff2');
     font-weight: 700; /* Bold */
     font-style: normal;
 }
 
-/* Regular (als standaardgewicht) */
+/* Regular */
 @font-face {
     font-family: 'Universal Sans';
-    src: url('/fonts/UniversalSans/UniversalSans-Regular.woff2') format('woff2');
+    src: url('/fonts/US/UniversalSansRegular.woff2') format('woff2');
     font-weight: 400; /* Regular */
     font-style: normal;
-}
 }
 /* ------------------------------------------------*/
 /* Fonts End */
