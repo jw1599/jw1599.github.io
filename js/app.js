@@ -579,19 +579,27 @@ $(function() {
 // --------------------------------------------- //
 // Contact Form Start
 // --------------------------------------------- //
-$("#contact-form").submit(function(event) {
-    event.preventDefault(); // Voorkom de standaard verzendactie
+$(document).ready(function() {
+  $('#contact-form').on('submit', function(event) {
+    event.preventDefault(); // Voorkom de standaardformulierverzending
+
+    var formData = $(this).serialize(); // Verkrijg de formulierdata
 
     $.ajax({
-        type: "POST",
-        url: "https://web3forms.com/api/v1/submit",
-        data: $(this).serialize(),
-    }).done(function(response) {
-        console.log(response);
-        // Succesvol verwerkt
-    }).fail(function(jqXHR, textStatus, errorThrown) {
-        console.error("Er is een fout opgetreden: " + textStatus, errorThrown);
+      url: 'https://web3forms.com/api/v1/submit',
+      type: 'POST',
+      data: formData,
+      success: function(response) {
+        // Acties bij succesvolle verzending
+        alert('Bedankt voor je bericht!'); // Hier kun je ook een beter ontwerp gebruiken
+        $('#contact-form')[0].reset(); // Reset het formulier
+      },
+      error: function(error) {
+        // Acties bij een fout
+        alert('Er is een fout opgetreden: ' + error.responseText);
+      }
     });
+  });
 });
 // --------------------------------------------- //
 // Contact Form End
