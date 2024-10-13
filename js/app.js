@@ -576,30 +576,45 @@ $(function() {
   // PhotoSwipe Gallery Images Replace End
   // --------------------------------------------- //
 
-  // --------------------------------------------- //
-  // Contact Form Start
-  // --------------------------------------------- //
-  $("#contact-form").submit(function() { //Change
+// --------------------------------------------- //
+// Contact Form Start
+// --------------------------------------------- //
+$("#contact-form").submit(function(e) {
+    e.preventDefault(); // Voorkom standaard verzenden
+
     var th = $(this);
-    $.ajax({
-      type: "POST",
-      url: "mail.php", //Change
-      data: th.serialize()
-    }).done(function() {
-      $('.contact').find('.form').addClass('is-hidden');
-      $('.contact').find('.form__reply').addClass('is-visible');
-      setTimeout(function() {
-        // Done Functions
-        $('.contact').find('.form__reply').removeClass('is-visible');
-        $('.contact').find('.form').delay(300).removeClass('is-hidden');
-        th.trigger("reset");
-      }, 5000);
+
+    // Verstuur de formuliergegevens naar Web3Forms
+    fetch(th.attr('action'), {
+        method: 'POST',
+        body: new FormData(th[0]), // FormData-object om de invoerwaarden te verzamelen
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            // Toon succesmelding
+            $('.contact').find('.form').addClass('is-hidden');
+            $('.contact').find('.form__reply').addClass('is-visible');
+            setTimeout(function() {
+                $('.contact').find('.form__reply').removeClass('is-visible');
+                $('.contact').find('.form').delay(300).removeClass('is-hidden');
+                th.trigger("reset");
+            }, 5000);
+        } else {
+            // Toon foutmelding
+            alert('Er is een fout opgetreden. Probeer het opnieuw.');
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Er is een fout opgetreden: ' + error.message);
     });
-    return false;
-  });
-  // --------------------------------------------- //
-  // Contact Form End
-  // --------------------------------------------- //
+
+    return false; // Voorkom standaard verzenden
+});
+// --------------------------------------------- //
+// Contact Form End
+// --------------------------------------------- //
 
 });
 
