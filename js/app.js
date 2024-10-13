@@ -579,28 +579,18 @@ $(function() {
 // --------------------------------------------- //
 // Contact Form Start
 // --------------------------------------------- //
-$("#contact-form").submit(function(e) {
-    e.preventDefault(); // Voorkom standaard verzenden
-    var th = $(this);
-    
+$("#contact-form").submit(function(event) {
+    event.preventDefault(); // Voorkom de standaard verzendactie
+
     $.ajax({
         type: "POST",
-        url: th.attr('action'), // Zorg ervoor dat de actie goed is ingesteld
-        data: th.serialize(),
-        success: function(response) {
-            // Succesbericht
-            $('.contact').find('.form').addClass('is-hidden');
-            $('.contact').find('.form__reply').addClass('is-visible');
-            setTimeout(function() {
-                $('.contact').find('.form__reply').removeClass('is-visible');
-                $('.contact').find('.form').delay(300).removeClass('is-hidden');
-                th.trigger("reset");
-            }, 5000);
-        },
-        error: function(error) {
-            // Foutmelding
-            alert('Er is een fout opgetreden: ' + error.statusText);
-        }
+        url: "https://web3forms.com/api/v1/submit",
+        data: $(this).serialize(),
+    }).done(function(response) {
+        console.log(response);
+        // Succesvol verwerkt
+    }).fail(function(jqXHR, textStatus, errorThrown) {
+        console.error("Er is een fout opgetreden: " + textStatus, errorThrown);
     });
 });
 // --------------------------------------------- //
