@@ -581,18 +581,14 @@ $(function() {
 // --------------------------------------------- //
 $("#contact-form").submit(function(e) {
     e.preventDefault(); // Voorkom standaard verzenden
-
     var th = $(this);
-
-    // Verstuur de formuliergegevens naar Web3Forms
-    fetch(th.attr('action'), {
-        method: 'POST',
-        body: new FormData(th[0]), // FormData-object om de invoerwaarden te verzamelen
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            // Toon succesmelding
+    
+    $.ajax({
+        type: "POST",
+        url: th.attr('action'), // Zorg ervoor dat de actie goed is ingesteld
+        data: th.serialize(),
+        success: function(response) {
+            // Succesbericht
             $('.contact').find('.form').addClass('is-hidden');
             $('.contact').find('.form__reply').addClass('is-visible');
             setTimeout(function() {
@@ -600,17 +596,12 @@ $("#contact-form").submit(function(e) {
                 $('.contact').find('.form').delay(300).removeClass('is-hidden');
                 th.trigger("reset");
             }, 5000);
-        } else {
-            // Toon foutmelding
-            alert('Er is een fout opgetreden. Probeer het opnieuw.');
+        },
+        error: function(error) {
+            // Foutmelding
+            alert('Er is een fout opgetreden: ' + error.statusText);
         }
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('Er is een fout opgetreden: ' + error.message);
     });
-
-    return false; // Voorkom standaard verzenden
 });
 // --------------------------------------------- //
 // Contact Form End
