@@ -49,11 +49,37 @@
 /* Fonts Start */
 /* ------------------------------------------------*/
 /* Urbanist font */
+/* Light */
 @font-face {
-    font-family: 'Universal Sans Regular';
-    src: url('/fonts/UniversalSans/UniversalSans-Regular.woff2') format('woff2');
-    font-weight: normal;
+    font-family: 'Universal Sans';
+    src: url('/fonts/US/UniversalSans-Light.woff2') format('woff2');
+    font-weight: 300; /* Light */
     font-style: normal;
+}
+
+/* Medium */
+@font-face {
+    font-family: 'Universal Sans';
+    src: url('/fonts/US/UniversalSans-Medium.woff2') format('woff2');
+    font-weight: 500; /* Medium */
+    font-style: normal;
+}
+
+/* Bold */
+@font-face {
+    font-family: 'Universal Sans';
+    src: url('/fonts/US/UniversalSans-Bold.woff2') format('woff2');
+    font-weight: 700; /* Bold */
+    font-style: normal;
+}
+
+/* Regular (als standaardgewicht) */
+@font-face {
+    font-family: 'Universal Sans';
+    src: url('/fonts/US/UniversalSans-Regular.woff2') format('woff2');
+    font-weight: 400; /* Regular */
+    font-style: normal;
+}
 }
 /* ------------------------------------------------*/
 /* Fonts End */
@@ -63,8 +89,8 @@
 /* ------------------------------------------------*/
 :root {
   --_size: 1.6rem;
-  --_font-default: "Universal Sans Regular", sans-serif;
-  --_font-accent: "Universal Sans Regular", sans-serif;
+  --_font-default: "Universal Sans", sans-serif;
+  --_font-accent: "Universal Sans", sans-serif;
   --_radius: 2rem;
   --_radius-s: 1rem;
   --_animspeed-fast: 0.1s;
