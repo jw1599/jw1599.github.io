@@ -51,7 +51,7 @@
 /* Urbanist font */
 @font-face {
     font-family: 'Universal Sans Regular';
-    src: url('/fonts/US/UniversalSans-Regular.woff2') format('woff2');
+    src: url('/fonts/UniversalSans/UniversalSans-Regular.woff2') format('woff2');
     font-weight: normal;
     font-style: normal;
 }
@@ -362,7 +362,7 @@ html {
 }
 
 body {
-    font: normal 400 var(--_size)/1.4 var(--_font-default); /* Zorgt ervoor dat Universal Sans wordt toegepast */
+    font: normal 400 var(--_size)/1.4 var(--_font-default);
     background-color: var(--base);
     color: var(--t-medium);
 }
