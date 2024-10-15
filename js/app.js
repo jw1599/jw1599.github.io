@@ -17,25 +17,26 @@
  *
  *  01. Loader & Loading Animation
  *  02. Bootstrap Scroll Spy Plugin Settings
- *  03. Scroll to Top Button
- *  04. Stacking Cards
- *  05. Scroll Animations
- *  06. Fade-in Type Effect
- *  07. Blocks Marquee
- *  08. Parallax
- *  09. Swiper Slider
- *  10. Typed.js Plugin
- *  11. Magnific Popup
- *  12. Layout Masonry
- *  13. Smooth Scrolling
- *  14. Buttons Hover Effect
- *  15. SVG Fallback
- *  16. Chrome Smooth Scroll
- *  17. Images Moving Ban
- *  18. Detecting Mobile/Desktop
- *  19. PhotoSwipe Gallery Images Replace
- *  20. Contact Form
- *  21. Color Switch
+ *  03. Lenis Scroll Plugin
+ *  04. Scroll to Top Button
+ *  05. Stacking Cards
+ *  06. Scroll Animations
+ *  07. Fade-in Type Effect
+ *  08. Blocks Marquee
+ *  09. Parallax
+ *  10. Swiper Slider
+ *  11. Typed.js Plugin
+ *  12. Magnific Popup
+ *  13. Layout Masonry
+ *  14. Smooth Scrolling
+ *  15. Buttons Hover Effect
+ *  16. SVG Fallback
+ *  17. Chrome Smooth Scroll
+ *  18. Images Moving Ban
+ *  19. Detecting Mobile/Desktop
+ *  20. PhotoSwipe Gallery Images Replace
+ *  21. Contact Form
+ *  22. Color Switch
  *
  * ------------------------------------------------
  * Table of Contents End
@@ -109,6 +110,19 @@ const scrollSpy = new bootstrap.ScrollSpy(document.body, {
 });
 // --------------------------------------------- //
 // Bootstrap Scroll Spy Plugin Settings End
+// --------------------------------------------- //
+
+// --------------------------------------------- //
+// Lenis Scroll Plugin Start
+// --------------------------------------------- //
+const lenis = new Lenis();
+lenis.on('scroll', ScrollTrigger.update);
+gsap.ticker.add((time) => {
+  lenis.raf(time * 1000)
+});
+gsap.ticker.lagSmoothing(0);
+// --------------------------------------------- //
+// Lenis Scroll Plugin End
 // --------------------------------------------- //
 
 // --------------------------------------------- //
@@ -576,10 +590,10 @@ $(function() {
   // PhotoSwipe Gallery Images Replace End
   // --------------------------------------------- //
 
-// --------------------------------------------- //
-// Contact Form Start
-// --------------------------------------------- //
-document.getElementById("contact-form").addEventListener("submit", function (event) {
+  // --------------------------------------------- //
+  // Contact Form Start
+  // --------------------------------------------- //
+  document.getElementById("contact-form").addEventListener("submit", function (event) {
   event.preventDefault(); // Voorkom dat de pagina opnieuw laadt
 
   const formData = new FormData(this); // Verkrijg de gegevens van het formulier
@@ -610,10 +624,9 @@ document.getElementById("contact-form").addEventListener("submit", function (eve
       alert("Er is een fout opgetreden. Probeer het opnieuw.");
     });
 });
-
-// --------------------------------------------- //
-// Contact Form End
-// --------------------------------------------- //
+  // --------------------------------------------- //
+  // Contact Form End
+  // --------------------------------------------- //
 
 });
 
